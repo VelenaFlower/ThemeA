@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A2</title>
+</head>
+<body>
+<h3>Домашнее задание A2</h3>
+<p>Создать проект ANKETA. Спросить у пользователя: <br>
+    - фамилию, имя, отчество РАЗДЕЛЬНО (оператором prompt)<br>
+    - возраст в годах (оператором prompt)<br>
+    - пол (оператором confirm, например, "ваш пол - мужской?")<br>
+    и вывести оператором alert анкету пользователя по примеру:<br>
+    <i>ваше ФИО: Иванов Иван Иванович<br>
+        ваш возраст в годах: 20<br>
+        ваш возраст в днях: 7300<br>
+        через 5 лет вам будет: 25<br>
+        ваш пол: мужской<br>
+        вы на пенсии: нет</i><br>
+    Должен быть контроль корректности вводимых пользователем данных (например, фамилия не должна быть пустой, возраст должен
+    быть корректной цифрой и т.д.).<br>
+    Оператор alert в коде должен использоваться ровно один раз.</p>
+
+<script type="text/javascript">
+    window.onload = function() {
+        new_user();
+    };
+    function  new_user() {
+        var fio = "";
+        var age;
+        var pol;
+        var pens;
+        var pens_confirm;
+        var age_days;
+        var age_future;
+        enter_fio();
+        enter_age();
+        enter_pol();
+
+        function enter_fio() {
+            function enter_fio(question) {
+                var answer=prompt(question);
+                if (!answer || isFinite(parseInt(answer))){
+                    enter_fio(question);
+                } else{
+                    fio+= answer+" ";
+                }
+            }
+            enter_fio("Введите вашу фамилию: ");
+            enter_fio("Введите ваше имя: ");
+            enter_fio("Введите ваше отчество: ");
+        }
+        function enter_age() {
+            age=parseInt(prompt("Введите возраст"));
+            if (isFinite(age)){
+                age_days=age*365;
+                age_future=age+5;
+            } else {
+                enter_age();
+            }
+        }
+        function enter_pol() {
+            pol=confirm("Ваш пол - мужской?");
+            pol?pens=65:pens=60;
+            if(pens==65&&age>=pens || pens==60&&age>=pens) {
+                pens_confirm="да";
+            } else{
+                pens_confirm="нет"
+            }
+            if(pol){
+                pol="мужской";
+            } else{
+                pol="женский";
+            }
+        }
+
+        if (age!=0&&fio.length!=0){
+            alert("ваше ФИО: "+fio+"\nваш возраст в годах: " + age +"\nваш возраст в днях: "+age_days+"\nчерез 5 лет вам будет: "
+                +age_future + "\nваш пол: " + pol +"\nвы на пенсии: " + pens_confirm );
+        } else {
+            alert("Введите данные снова в корректной форме");
+        }
+    }
+
+</script>
+</body>
+</html>

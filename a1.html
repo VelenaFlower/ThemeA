@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>A1</title>
+</head>
+<body>
+    <h3>Домашнее задание A1</h3>
+<p>Написать «чистую» («молчаливую») функцию для эффективного подсчёта количества русских гласных букв в строке.
+    Спросить у пользователя строку. Вывести в консоль количество русских гласных букв в ней.</p>
+
+<script type="text/javascript">
+
+    function vowLetter(str) {
+        var counter= 0;
+        var strk=str.toLowerCase().split('');
+        function F(V){
+            var arr=["а", "е","ё", "и", "о", "у", "ы", "э", "ю", "я"];
+            if(arr.indexOf(V)!==-1){
+                counter++;
+            }
+        }
+        strk.forEach(F);
+        return counter;
+    }
+console.log(vowLetter(prompt("Напишите строку: ")));
+
+</script>
+</body>
+</html>
